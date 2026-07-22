@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veloria Bakehouse | Menu & Ordering</title>
+    <!-- Font Awesome for sleek icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #1e120c;
+            --panel-dark: #2c1c14;
+            --rose-gold: #d4a373;
+            --text-light: #f4eae1;
+            --text-muted: #bda292;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            /* Watermark Background - Replace URL with your logo link */
+            background-image: linear-gradient(rgba(30, 18, 12, 0.92), rgba(30, 18, 12, 0.92)), url('https://i.postimg.cc/nzYRWBwn/logo-image.png');
+            background-repeat: no-repeat;
+            background-position: center 30%;
+            background-size: 85% auto;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 20px;
+            padding-bottom: 90px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Header Styling */
+        header {
+            text-align: center;
+            padding: 20px 10px 10px 10px;
+        }
+
+        .logo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 2px solid var(--rose-gold);
+            margin-bottom: 12px;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--rose-gold);
+            font-family: 'Georgia', serif;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 4px 0 10px 0;
+        }
+
+        .tagline {
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--text-light);
+        }
+
+        .author {
+            font-size: 0.85rem;
+            color: var(--rose-gold);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Menu Grid Section */
+        .section-title {
+            text-align: center;
+            font-size: 1.25rem;
+            color: var(--rose-gold);
+            border-bottom: 1px solid rgba(212, 163, 115, 0.3);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .menu-item {
+            background-color: var(--panel-dark);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        /* Thumbnail Image Styling Adjusted for Stand & Product View */
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: center 60%;
+        }
+
+        .item-info {
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .item-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-light);
+        }
+
+        .item-price {
+            color: var(--rose-gold);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: auto;
+        }
+
+        /* Quick Action Buttons */
+        .actions-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--rose-gold);
+            color: var(--bg-dark);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--rose-gold);
+            color: var(--rose-gold);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Feedback Form Container */
+        .feedback-form {
+            background-color: var(--panel-dark);
+            border: 1px solid rgba(212, 163, 115, 0.2);
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            color: var(--text-muted);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--bg-dark);
+            border: 1px solid rgba(212, 163, 115, 0.3);
+            border-radius: 8px;
+            color: white;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--rose-gold);
+        }
+
+        /* Payment Lightbox Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: var(--panel-dark);
+            border: 2px solid var(--rose-gold);
+            padding: 25px;
+            border-radius: 16px;
+            max-width: 340px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-content img {
+            width: 100%;
+            max-width: 220px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.6rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        /* Sticky Footer Navigation Bar */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background-color: var(--panel-dark);
+            border-top: 1px solid rgba(212, 163, 115, 0.2);
+            display: flex;
+            justify-content: space-around;
+            padding: 14px;
+            z-index: 900;
+        }
+
+        footer a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        footer a i {
+            color: var(--rose-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <img class="logo" src="https://i.postimg.cc/nzYRWBwn/logo-image.png" alt="Veloria Bakehouse Logo">
+            <h1>Veloria</h1>
+            <div class="subtitle">Bakehouse</div>
+            <p class="tagline">"Creating moments, every bite."</p>
+            <p class="author">By CA Pooja Agarwal</p>
+        </header>
+
+        <!-- Menu Section -->
+        <main>
+            <!-- Cakes -->
+            <div class="section-title"><i class="fa-solid fa-cake-candles"></i> Cakes</div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <img src="https://i.postimg.cc/zvvCkgsd/half-kg-final.png" alt="Half KG Chocolate Cake">
+                    <div class="item-info">
+                        <div class="item-title">Half KG Chocolate Cake</div>
+                        <div class="item-price">₹749</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://i.postimg.cc/wBzDGZKM/bento-choco-final.png" alt="Bento Chocolate Cake">
+                    <div class="item-info">
+                        <div class="item-title">Bento Chocolate Cake</div>
+                        <div class="item-price">₹399</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://i.postimg.cc/Dzz1hsZb/half-kg-Caramel-final.png" alt="Half KG Caramel Cake">
+                    <div class="item-info">
+                        <div class="item-title">Half KG Caramel Cake</div>
+                        <div class="item-price">₹599</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://i.postimg.cc/9fxtwbSP/bento-caramel-final.png" alt="Bento Caramel Cake">
+                    <div class="item-info">
+                        <div class="item-title">Bento Caramel Cake</div>
+                        <div class="item-price">₹349</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Treats & Sips -->
+            <div class="section-title" style="margin-top: 30px;"><i class="fa-solid fa-mug-hot"></i> Treats & Sips</div>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <img src="https://i.postimg.cc/9FjTMs0W/chocolate-pastry-final.png" alt="Chocolate Pastry">
+                    <div class="item-info">
+                        <div class="item-title">Chocolate Pastry</div>
+                        <div class="item-price">₹120</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://i.postimg.cc/DyFJFsjD/cold-coffee-final.png" alt="Cold Coffee">
+                    <div class="item-info">
+                        <div class="item-title">Cold Coffee</div>
+                        <div class="item-price">₹130</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://i.postimg.cc/k4KGPXx3/brownie-final.png" alt="Brownie Sundae">
+                    <div class="item-info">
+                        <div class="item-title">Brownie Sundae</div>
+                        <div class="item-price">₹149</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Quick Action Buttons -->
+        <div class="actions-container">
+            <a href="https://wa.me/919556492655?text=Hi%20Pooja,%20I%20want%20to%20place%20an%20order%20with%20Veloria%20Bakehouse!" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                <i class="fa-solid fa-basket-shopping"></i> Start Your Order
+            </a>
+            <button class="btn btn-secondary" onclick="openModal()">
+                <i class="fa-solid fa-qrcode"></i> View Payment Options
+            </button>
+            <a href="https://chat.whatsapp.com/FGdahyeF1JfB8a7dNjo0lz" class="btn btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+        </div>
+
+        <!-- Feedback Form -->
+        <div class="feedback-form">
+            <h3 style="color: var(--rose-gold); margin-bottom: 12px; font-size: 1.1rem; text-align: center;">Leave a Feedback</h3>
+            <form action="https://formspree.io/f/xaqrdpnv" method="POST">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" name="name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>Your Review</label>
+                    <textarea name="message" rows="3" required placeholder="How was your experience?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-secondary" style="padding: 10px; width: 100%; font-size: 0.9rem;">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Lightbox Window -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 style="color: var(--rose-gold);">Scan to Pay</h3>
+            <p style="font-size: 0.85rem; margin-top: 5px; color: var(--text-muted);">Veloria Bakehouse Account</p>
+            <img src="https://i.postimg.cc/cLnVmgZL/payment-link.jpg" alt="Payment QR Code">
+            <p style="font-size: 0.9rem; color: var(--text-light);">Accepted via all UPI Apps</p>
+        </div>
+    </div>
+
+    <!-- Footer Bar -->
+    <footer>
+        <a href="tel:+919556492655"><i class="fa-solid fa-phone"></i> 9556492655</a>
+        <a href="https://www.instagram.com/__ca__pooh?igsh=bDFwbjRlamtrbjFs" target="_blank"><i class="fa-brands fa-instagram"></i> __ca__pooh</a>
+    </footer>
+
+    <!-- Lightbox Script -->
+    <script>
+        function openModal() {
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+        window.onclick = function(event) {
+            let modal = document.getElementById('paymentModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
